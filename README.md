@@ -1,4 +1,4 @@
-# Market Insight
+# MarketPrism
 
 An AI-powered stock market analysis platform that provides comprehensive financial data and intelligent insights through a conversational interface.
 
@@ -11,7 +11,7 @@ Market Insight leverages advanced AI agents to deliver real-time stock market in
 **Backend:**
 - FastAPI for high-performance API endpoints
 - LangChain & LangGraph for AI agent orchestration
-- OpenAI GPT models for intelligent responses
+- GroqAI models for intelligent responses
 - YFinance for financial data retrieval
 - Langfuse for observability and tracing
 
@@ -25,7 +25,7 @@ Market Insight leverages advanced AI agents to deliver real-time stock market in
 ### Prerequisites
 - Python 3.x
 - Node.js (for frontend)
-- OpenAI API key
+- Groq API key
 
 ### Installation
 
