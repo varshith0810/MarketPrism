@@ -4,14 +4,14 @@ An AI-powered stock market analysis platform that provides comprehensive financi
 
 ## Overview
 
-Market Insight leverages advanced AI agents to deliver real-time stock market information, financial analysis, and investment insights. The platform combines the power of LangChain and OpenAI's language models with Yahoo Finance data to create an intelligent assistant for stock market research.
+MarketPrism leverages advanced AI agents to deliver real-time stock market information, financial analysis, and investment insights. The platform combines the power of LangChain, LangGraph, and NVIDIA's Nemotron-3.5-Lightning-30B-A3B language model with Yahoo Finance data to create an intelligent assistant for stock market research.
 
 ## Technology Stack
 
 **Backend:**
 - FastAPI for high-performance API endpoints
 - LangChain & LangGraph for AI agent orchestration
-- GroqAI models for intelligent responses
+- NVIDIA Nemotron-3.5-Lightning-30B-A3B (`nvidia/nemotron-3.5-lightning-30b-a3b`) via NVIDIA NIM
 - YFinance for financial data retrieval
 - Langfuse for observability and tracing
 
@@ -25,7 +25,7 @@ Market Insight leverages advanced AI agents to deliver real-time stock market in
 ### Prerequisites
 - Python 3.x
 - Node.js (for frontend)
-- Groq API key
+- NVIDIA API key (from [build.nvidia.com](https://build.nvidia.com))
 
 ### Installation
 
@@ -34,7 +34,11 @@ Market Insight leverages advanced AI agents to deliver real-time stock market in
    ```bash
    pip install -r requirements.txt
    ```
-3. Set up environment variables in `.env` file
+3. Set up environment variables:
+   ```bash
+   cp .env.example .env
+   ```
+   Add your `NVIDIA_API_KEY` to the `.env` file.
 4. Install frontend dependencies:
    ```bash
    cd frontend
@@ -49,7 +53,25 @@ Market Insight leverages advanced AI agents to deliver real-time stock market in
    cd frontend
    npm run dev
    ```
-7. Access the API at `http://localhost:8000` and frontend at `http://localhost:5173`
+7. Access the API at `http://localhost:8000` and frontend at `http://localhost:3000`
+
+## AWS Deployment
+
+MarketPrism is containerized and production-ready for deployment on **AWS App Runner** (fully managed container service with automatic SSL, custom domains, and native SSE streaming).
+
+### Quick Deploy to AWS
+1. Review the detailed [AWS Deployment Guide](docs/aws-app-runner-deployment.md).
+2. Run the deployment script to build and push the container to Amazon ECR:
+   - **PowerShell (Windows)**:
+     ```powershell
+     .\scripts\deploy-aws.ps1 -Region us-east-1
+     ```
+   - **Bash (Linux / macOS)**:
+     ```bash
+     chmod +x ./scripts/deploy-aws.sh
+     ./scripts/deploy-aws.sh us-east-1
+     ```
+3. Connect the ECR image to an **AWS App Runner** service.
 
 ## Project Structure
 

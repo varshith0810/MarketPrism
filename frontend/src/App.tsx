@@ -269,8 +269,8 @@ function App() {
     <div className="app-container" ref={chatContainerRef}>
       <ThemeProvider mode="dark">
         <C1Chat
-          apiUrl="https://marketinsight-skgl.onrender.com/api/chat"
-          agentName="Market Insight"
+          apiUrl={import.meta.env.VITE_API_URL || "http://localhost:8000/api/chat"}
+          agentName="MarketPrism"
           logoUrl="/icon.png"
           formFactor="full-page"
         />

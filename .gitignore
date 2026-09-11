@@ -251,3 +251,8 @@ Desktop.ini
 .turbo
 .eslintcache
 .stylelintcache
+
+# Environment variables & secrets
+.env
+.env*.local
+!.env.example
