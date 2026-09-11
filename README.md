@@ -1,13 +1,15 @@
 # MarketPrism
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-AWS%20Lambda-orange?style=for-the-badge&logo=amazon-aws)](https://m2gb43bpkfy53jo6b3zp5wkcxy0sjuuz.lambda-url.ap-south-1.on.aws/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-marketprism--ai-orange?style=for-the-badge&logo=amazon-aws)](https://tinyurl.com/marketprism-ai)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
 [![React](https://img.shields.io/badge/React-18-61dafb.svg?logo=react)](https://reactjs.org/)
 
 An AI-powered stock market analysis platform that provides comprehensive financial data and intelligent insights through a real-time conversational interface.
 
-🔗 **Live Website:** [https://m2gb43bpkfy53jo6b3zp5wkcxy0sjuuz.lambda-url.ap-south-1.on.aws/](https://m2gb43bpkfy53jo6b3zp5wkcxy0sjuuz.lambda-url.ap-south-1.on.aws/)
+🔗 **Live Website:** [https://tinyurl.com/marketprism-ai](https://tinyurl.com/marketprism-ai)  
+*(Direct AWS Endpoint: [https://m2gb43bpkfy53jo6b3zp5wkcxy0sjuuz.lambda-url.ap-south-1.on.aws/](https://m2gb43bpkfy53jo6b3zp5wkcxy0sjuuz.lambda-url.ap-south-1.on.aws/))*
+
 
 ---
 
