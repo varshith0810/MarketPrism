@@ -4,9 +4,10 @@
 FROM node:20-alpine AS frontend-builder
 WORKDIR /app/frontend
 
-# Install dependencies with npm ci for reproducible builds
+# Install dependencies (fallback to npm install if package-lock.json is ignored by git)
 COPY frontend/package*.json ./
-RUN npm ci
+RUN if [ -f package-lock.json ]; then npm ci; else npm install; fi
+
 
 # Copy frontend source and build static bundle
 COPY frontend/ ./
