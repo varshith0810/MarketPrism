@@ -409,7 +409,7 @@ def get_analyst_recommendations_summary(ticker: str):
 # --------------------------------------------------------------------------------
 @tool('get_ticker', description="A function that returns the ticker/symbol of a given company")
 def get_ticker(company_name: str):
-    logger.info("Retrieving Ticker of {company_name}")
+    logger.info(f"Retrieving Ticker of {company_name}")
     
     if not company_name or not isinstance(company_name, str):
         return "Error: Invalid company name provided. Please provide a valid company name."
@@ -417,14 +417,18 @@ def get_ticker(company_name: str):
     try:
         start_time = time.time()
         url = f"https://query2.finance.yahoo.com/v1/finance/search?q={company_name}"
-        response = requests.get(url)
+        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"}
+        response = requests.get(url, headers=headers, timeout=10)
         
         if response.status_code == 200:
             data = response.json()
-            ticker = data['quotes'][0]['symbol']
-            end_time = time.time()
-            logger.info(f"Retrieved Ticker of {company_name} in {end_time - start_time:.3f} seconds")
-            return ticker
+            quotes = data.get('quotes', [])
+            if quotes and 'symbol' in quotes[0]:
+                ticker = quotes[0]['symbol']
+                end_time = time.time()
+                logger.info(f"Retrieved Ticker of {company_name} in {end_time - start_time:.3f} seconds: {ticker}")
+                return ticker
+            return f"No ticker symbol found for company '{company_name}'"
         else:
             return "Error: Failed to retrieve ticker. Please try again later."
             

@@ -17,9 +17,19 @@ RUN npm run build
 # =====================================================================
 FROM python:3.11-slim AS runtime
 
+# AWS Lambda Web Adapter: allows any web framework (FastAPI) to run seamlessly on AWS Lambda
+# with native response streaming support for SSE token streaming
+COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.4 /lambda-adapter /opt/extensions/lambda-adapter
+RUN chmod +x /opt/extensions/lambda-adapter
+
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    PORT=8000
+    PORT=8000 \
+    AWS_LWA_PORT=8000 \
+    AWS_LWA_INVOKE_MODE=response_stream \
+    AWS_LWA_READ_TIMEOUT_MS=300000 \
+    HOME=/tmp \
+    XDG_CACHE_HOME=/tmp
 
 WORKDIR /app
 
