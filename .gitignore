@@ -254,5 +254,13 @@ Desktop.ini
 
 # Environment variables & secrets
 .env
+.env.*
 .env*.local
 !.env.example
+*.pem
+*.key
+*.pfx
+*.pkcs12
+*credentials*.json
+*secret*.json
+

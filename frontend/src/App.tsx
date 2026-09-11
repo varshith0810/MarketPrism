@@ -269,7 +269,7 @@ function App() {
     <div className="app-container" ref={chatContainerRef}>
       <ThemeProvider mode="dark">
         <C1Chat
-          apiUrl={import.meta.env.VITE_API_URL || "http://localhost:8000/api/chat"}
+          apiUrl={import.meta.env.VITE_API_URL || "/api/chat"}
           agentName="MarketPrism"
           logoUrl="/icon.png"
           formFactor="full-page"
