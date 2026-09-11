@@ -1,6 +1,15 @@
 # MarketPrism
 
-An AI-powered stock market analysis platform that provides comprehensive financial data and intelligent insights through a conversational interface.
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-AWS%20Lambda-orange?style=for-the-badge&logo=amazon-aws)](https://m2gb43bpkfy53jo6b3zp5wkcxy0sjuuz.lambda-url.ap-south-1.on.aws/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
+[![React](https://img.shields.io/badge/React-18-61dafb.svg?logo=react)](https://reactjs.org/)
+
+An AI-powered stock market analysis platform that provides comprehensive financial data and intelligent insights through a real-time conversational interface.
+
+🔗 **Live Website:** [https://m2gb43bpkfy53jo6b3zp5wkcxy0sjuuz.lambda-url.ap-south-1.on.aws/](https://m2gb43bpkfy53jo6b3zp5wkcxy0sjuuz.lambda-url.ap-south-1.on.aws/)
+
+---
 
 ## Overview
 
@@ -10,89 +19,106 @@ MarketPrism leverages advanced AI agents to deliver real-time stock market infor
 
 **Backend:**
 - FastAPI for high-performance API endpoints
-- LangChain & LangGraph for AI agent orchestration
+- LangChain & LangGraph for multi-agent orchestration
 - NVIDIA Nemotron-3.5-Lightning-30B-A3B (`nvidia/nemotron-3.5-lightning-30b-a3b`) via NVIDIA NIM
-- YFinance for financial data retrieval
+- YFinance for live market and fundamental data retrieval
 - Langfuse for observability and tracing
 
 **Frontend:**
-- Modern React-based interface
-- Real-time streaming responses
-- Responsive design for all devices
+- Modern React SPA with responsive design
+- Real-time Server-Sent Events (SSE) token streaming
+- Interactive financial charts and analysis views
 
-## Getting Started
+**Deployment:**
+- Serverless container architecture on **AWS Lambda** (Container Image)
+- **AWS Lambda Web Adapter** for native HTTP and unbuffered response streaming
+- Direct **AWS Lambda Function URL** (Zero proxy markup, true $0.00 idle cost)
+
+---
+
+## Live Demo & Architecture
+
+The application is deployed live on AWS in `ap-south-1` using an ultra cost-effective serverless architecture:
+
+- **Live URL:** [https://m2gb43bpkfy53jo6b3zp5wkcxy0sjuuz.lambda-url.ap-south-1.on.aws/](https://m2gb43bpkfy53jo6b3zp5wkcxy0sjuuz.lambda-url.ap-south-1.on.aws/)
+- **Idle Running Cost:** **$0.00 / month** (Scales to zero when not receiving requests)
+- **Streaming Support:** True real-time unbuffered token streaming via Lambda Function URL `InvokeMode: RESPONSE_STREAM`.
+
+For detailed architecture details, refer to the [Cost-Effective AWS Deployment Guide](docs/cost-effective-aws-deployment.md).
+
+---
+
+## Getting Started Locally
 
 ### Prerequisites
-- Python 3.x
-- Node.js (for frontend)
+- Python 3.11+
+- Node.js 18+ (for frontend development)
 - NVIDIA API key (from [build.nvidia.com](https://build.nvidia.com))
 
-### Installation
+### Local Installation
 
-1. Clone the repository
-2. Install Python dependencies:
+1. **Clone the repository:**
    ```bash
+   git clone https://github.com/varshith0810/MarketPrism.git
+   cd MarketPrism
+   ```
+
+2. **Set up Python backend:**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: .\venv\Scripts\activate
    pip install -r requirements.txt
    ```
-3. Set up environment variables:
+
+3. **Configure environment variables:**
    ```bash
    cp .env.example .env
    ```
-   Add your `NVIDIA_API_KEY` to the `.env` file.
-4. Install frontend dependencies:
+   Add your `NVIDIA_API_KEY` to `.env`.
+
+4. **Install and run frontend:**
    ```bash
    cd frontend
    npm install
+   npm run dev
    ```
-5. Run the backend server:
+
+5. **Start backend server:**
    ```bash
    python main.py
    ```
-6. Run the frontend development server:
-   ```bash
-   cd frontend
-   npm run dev
-   ```
-7. Access the API at `http://localhost:8000` and frontend at `http://localhost:3000`
+
+6. Access the API at `http://localhost:8000` and frontend at `http://localhost:3000`.
+
+---
 
 ## AWS Deployment
 
-MarketPrism is containerized and production-ready for deployment on **AWS App Runner** (fully managed container service with automatic SSL, custom domains, and native SSE streaming).
+Deploy the entire stack (FastAPI backend + compiled React SPA) into a single serverless container on AWS:
 
-### Quick Deploy to AWS
-1. Review the detailed [AWS Deployment Guide](docs/aws-app-runner-deployment.md).
-2. Run the deployment script to build and push the container to Amazon ECR:
-   - **PowerShell (Windows)**:
-     ```powershell
-     .\scripts\deploy-aws.ps1 -Region us-east-1
-     ```
-   - **Bash (Linux / macOS)**:
-     ```bash
-     chmod +x ./scripts/deploy-aws.sh
-     ./scripts/deploy-aws.sh us-east-1
-     ```
-3. Connect the ECR image to an **AWS App Runner** service.
+### 1-Click Deployment
+- **Windows (PowerShell):**
+  ```powershell
+  .\scripts\deploy-cost-effective.ps1
+  ```
+- **Linux / macOS (Bash):**
+  ```bash
+  chmod +x ./scripts/deploy-cost-effective.sh
+  ./scripts/deploy-cost-effective.sh
+  ```
 
-## Project Structure
+### Automated CI/CD (GitHub Actions)
+Every push to `main` automatically builds, tests, and deploys the latest container to Amazon ECR and AWS Lambda via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
 
-```
-MarketInsight/
-├── components/     # AI agent configuration
-├── utils/          # Tools and utilities
-├── config/         # Configuration files
-├── frontend/       # React frontend application
-└── main.py         # FastAPI server entry point
-```
+---
 
 ## API Capabilities
 
-The platform provides 16 specialized tools for comprehensive stock analysis:
-- Stock price tracking
-- Historical data analysis
-- Financial statements (Balance Sheet, Income Statement, Cash Flow)
-- Company information and ratios
-- Dividend and split history
-- Ownership and holder data
-- Insider transactions
-- Analyst recommendations
-- Company ticker lookup
+The platform provides specialized financial analysis tools:
+- Real-time stock quotes and ticker lookup
+- Historical price movements and trend analysis
+- Fundamental financial statements (Balance Sheet, Income Statement, Cash Flow)
+- Valuation ratios and company profiles
+- Dividend history and stock splits
+- Institutional holders and insider transactions
+- Wall Street analyst ratings and consensus summaries
